@@ -21,14 +21,13 @@ func main() {
 	fmt.Println(cap(s))
 	fmt.Println(s[0])
 	//fmt.Println(s[4]) // err 越界了 index out of range
-
 	s1 := make([]int, 3, 5)
 	fmt.Println(s1)
 
 	var a []int
 	b := []int{}
 	fmt.Println(a == nil, b == nil)
-
+	s1 = append(s1, 1)
 	//s2 := make()
 	s2 := append(s1, 10)
 	s2 = append(s2, 10)
