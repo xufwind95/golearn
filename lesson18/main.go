@@ -21,7 +21,7 @@ func task2() {
 func main() {
 	// gorouting = 协程 或者 线程 go runtime
 	fmt.Println(time.Now())
-	//exit := make(chan int)
+	//exit := make(chan int) // 不写容量的表示只有一个长度
 	var wg sync.WaitGroup
 	/*
 		go task1("task1")
@@ -29,11 +29,11 @@ func main() {
 	*/
 	wg.Add(1)
 	go func(s string) { // 用匿名函数启动一个新的线程
+		//defer exit <- 1
+		defer wg.Done() //wg.Add(-1) // 这种也可以
 		fmt.Println("task3 begin", s)
 		time.Sleep(1 * time.Second)
 		fmt.Println("task3 end", s)
-		//exit <- 1
-		wg.Done() //wg.Add(-1) // 这种也可以
 	}("task3")
 	//time.Sleep(1 * time.Second)
 	fmt.Println(time.Now())
